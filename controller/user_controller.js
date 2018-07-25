@@ -46,7 +46,7 @@ exports.userReport = function(req, res) {
       "COUNT(if(qu.question_type = '时政',true, null)) AS type_2,  " +
       "COUNT(if(qu.question_type = '行政能力',true, null)) AS type_3,  " +
       "COUNT(if(qu.question_type = '行政素养',true, null)) AS type_4,  " +
-      "COUNT(if(qu.question_type = '党龄',true, null)) AS type_5  " +
+      "COUNT(if(qu.question_type = '党史',true, null)) AS type_5  " +
       "FROM qa qa  " +
       "LEFT JOIN question qu ON qu.question_id = qa.question_id  " +
       "WHERE user_id = " + parseInt(req.params.id), function(err, result1) {
@@ -121,7 +121,7 @@ function getReportResult(sum_result) {
     {name: '时政',value: sum_result.type_2, type: type2},
     {name: '行政能力',value: sum_result.type_3, type: type3},
     {name: '行政素养',value: sum_result.type_4, type: type4},
-    {name: '党龄',value: sum_result.type_5, type: type5},
+    {name: '党史',value: sum_result.type_5, type: type5},
   ]
 
   temp.sort(keysort)
