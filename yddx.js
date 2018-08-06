@@ -103,5 +103,5 @@ app.use('/api/wx', wx)
 app.use('/api/cos', cos)
 
 app.listen(config.server.port, function(){
-	console.log('Server running at port 3000: http://127.0.0.1:3000')
+	console.log('Server running at port ' + config.server.port + ': http://127.0.0.1:' + config.server.port )
 })

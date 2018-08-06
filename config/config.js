@@ -9,7 +9,7 @@ var config = {
 	},
 	server: {
 		host: '127.0.0.1',
-		port: 3000
+		port: 3002
   },
   weixin: {
     appid: 'wx540cd05861c228f1', // 小程序 appid

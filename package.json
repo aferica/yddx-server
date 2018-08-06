@@ -2,9 +2,9 @@
   "name": "crud-mysql",
   "version": "1.0.0",
   "description": "Node.js CRUD application using MySQL",
-  "main": "app.js",
+  "main": "yddx.js",
   "scripts": {
-    "start": "supervisor app.js"
+    "start": "supervisor yddx.js"
   },
   "keywords": [
     "node",
