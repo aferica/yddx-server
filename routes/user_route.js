@@ -10,5 +10,9 @@ app.get('/get/report/:id', function(req, res) {
   User.userReport(req, res)
 })
 
+app.post('/login', function(req, res) {
+  User.userLogin(req, res)
+})
+
 
 module.exports = app

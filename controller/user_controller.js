@@ -18,6 +18,7 @@ exports.register = function(req, res) {
       learn_time: 0,
       open_id: req.sanitize('open_id'),
       sex: req.sanitize('sex') || '0',
+      password: '96e79218965eb72c92a549dd5a330112'
     }
   
     console.log(user)
@@ -78,6 +79,25 @@ exports.userReport = function(req, res) {
             res.jsonp({code: 0, msg: '查询用户信息成功', data: sum_result})
           }
         })			
+      }
+    })
+  })
+}
+
+exports.userLogin = function(req, res) {
+  req.getConnection(function(error, conn) {
+    let sql = "SELECT * FROM user Where user_name='" + req.body.userName + "' AND password='" + req.body.password + "'"
+    console.log(sql)
+    conn.query(sql, function(err, result) {
+      //if(err) throw err
+      if (err) {
+        res.jsonp({code: -1, msg: '登录失败'})
+      } else {
+        if(result.length > 0)	{
+          res.jsonp({code: 0, msg: '登录成功', data: result[0]})
+        }	else {
+          res.jsonp({code: -1, msg: '账户或密码错误'})
+        }
       }
     })
   })

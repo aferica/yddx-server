@@ -20,6 +20,12 @@ var config = {
     SecretKey: '63nbRXilfNyNoEYnxvgIm4AnJdlhS1Qg',
     Bucket: 'yidongdangxiao-1256926653',
     Region: 'ap-guangzhou'
+  },
+  redis: {
+    // host:   'localhost',
+    host:   '39.108.63.38',
+    password: '123456',
+    port:     6379,
   }
 }
 
