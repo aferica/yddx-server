@@ -1,9 +1,9 @@
 var config = {
 	database: {
     // host:	  'localhost', 	// database host
-    host:	  '39.108.63.38', 	// database host
+    host:	  '193.112.176.174', 	// database host
 		user: 	  'root', 		// your database username
-		password: '123456', 		// your database password
+		password: 'HCKJ@admin', 		// your database password
 		port: 	  3306, 		// default MySQL port
 		db: 	  'yddx' 		// your database name
 	},
@@ -23,8 +23,8 @@ var config = {
   },
   redis: {
     // host:   'localhost',
-    host:   '39.108.63.38',
-    password: '123456',
+    host:   '193.112.176.174',
+    password: 'HCKJ@admin',
     port:     6379,
   }
 }

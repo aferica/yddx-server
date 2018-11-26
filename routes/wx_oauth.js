@@ -51,8 +51,6 @@ app.get('/check/:code', function(req, res) {
       })
     })
   })
-  
-	 
 })
 
 module.exports = app;
