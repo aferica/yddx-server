@@ -207,3 +207,65 @@ exports.uploadDangkeVideo = function(req, res) {
 
 }
 
+
+exports.bigUploadInit = function (req, res) {
+  console.log(req.body);
+  let now = new Date();
+  let year = now.getFullYear();
+  let month = now.getMonth() + 1;
+  if(month < 10) {
+    month = '0' + month
+  }
+  let key = req.query.key + '/' + year + '-' + month + '/' + req.body.name;
+
+  cos.multipartInit({
+    Bucket: config.cos.Bucket,                         /* 必须 */
+    Region: config.cos.Region,                         /* 必须 */
+    Key: key                                           /* 必须 */
+  }, function(err, data) {
+    if(err) {
+      return res.status(404)
+    } else {
+      res.jsonp({code: 0, msg: '获取上传参数成功', data: data})
+    }
+  });
+}
+
+exports.bigUploadPart = function(req, res) {
+  console.log(req.body);
+  console.log(req.file);
+  console.log(req.query);
+  // 图片重命名
+  // fs.rename(filePath, fileName, (err) => {
+  //     if (err) {
+  //         res.end(JSON.stringify({status:'102',msg:'文件写入失败'}));   
+  //     }else{
+  //         let localFile = './' + fileName;  
+  //         let key = 'video/dangke/' + year + '/' + month + '/' + day + '/' + fileName;
+
+  //         // 腾讯云 文件上传
+          let params = {
+              Bucket: config.cos.Bucket,                         /* 必须 */
+              Region: config.cos.Region,                         /* 必须 */
+              Key: req.query.key,                                           /* 必须 */
+              // FilePath: req.file.path,                                /* 必须 */
+              UploadId: req.query.uid,
+              PartNumber: req.body.chunkNumber,
+              ContentLength: req.body.chunkSize
+          }
+          cos.multipartUpload(params, function(err, data) {
+            if(err) {
+              console.log(err)
+              // fs.unlinkSync(localFile);
+              res.jsonp({code: -1, msg: '文件上传失败，请重试'})   
+            } else {
+              // fs.unlinkSync(localFile);
+              console.log(data)
+              // let videoSrc = 'https://yidongdangxiao-1256926653.cos.ap-guangzhou.myqcloud.com/' + data.Key;
+              res.jsonp({code: 0, msg: '上传成功', data: data})
+            }
+          });
+  //     }
+  // });
+
+}

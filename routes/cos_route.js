@@ -25,5 +25,13 @@ app.post('/upload/big/upload', upload.single('file'), function (req, res) {
   Cos.bigUploadUpload(req, res)
 })
 
+app.post('/upload/big/init', function (req, res) {
+  Cos.bigUploadInit(req, res)
+})
+
+app.post('/upload/big/part', upload.single('file'), function (req, res) {
+  Cos.bigUploadPart(req, res)
+})
+
 
 module.exports = app
