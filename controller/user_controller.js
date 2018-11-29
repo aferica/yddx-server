@@ -14,18 +14,19 @@ exports.register = function(req, res) {
       belong_branch_id: req.sanitize('belong_branch_id'),
       join_year: req.sanitize('join_year'),
       photo_filename: req.sanitize('photo_filename'),
-      role_id: req.sanitize('role_id'),
+      role_id: '0',
       learn_time: 0,
       open_id: req.sanitize('open_id'),
       sex: req.sanitize('sex') || '0',
       password: '96e79218965eb72c92a549dd5a330112'
     }
   
-    console.log(user)
+    // console.log(user)
     req.getConnection(function(error, conn) {
       conn.query('INSERT INTO user SET ?', user, function(err, result) {
         //if(err) throw err
         if (err) {
+          console.log(err)
           res.jsonp({code: -1, msg: '保存用户信息失败'})
         } else {				
           res.jsonp({code: 0, msg: '保存用户信息成功', data: result})
