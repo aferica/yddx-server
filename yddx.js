@@ -96,6 +96,7 @@ let users = require('./routes/user_route')
 let wx = require('./routes/wx_oauth')
 let cos = require('./routes/cos_route')
 let news = require('./routes/news_route')
+let videos = require('./routes/videos_route')
 
 
 app.use('/api/test', index)
@@ -103,6 +104,7 @@ app.use('/api/user', users)
 app.use('/api/wx', wx)
 app.use('/api/cos', cos)
 app.use('/api/news', news)
+app.use('/api/videos', videos)
 
 app.listen(config.server.port, function(){
 	console.log('Server running at port ' + config.server.port + ': http://127.0.0.1:' + config.server.port )
