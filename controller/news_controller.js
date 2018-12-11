@@ -5,6 +5,7 @@ exports.getNews = function(req, res) {
   if (req.query.type && req.query.type != '') {
     sql += 'where a.' + req.query.type + '=1 '
   }
+  sql += 'order by a.create_time desc, a.id desc '
   sql += 'limit ' + page * limit + ',' + limit
   req.getConnection(function(error, conn) {
     conn.query(sql, function(err, result) {
